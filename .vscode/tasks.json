@@ -1,0 +1,61 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "process",
+			"label": "clear",
+			"command": "rm",
+			"args": [
+				"-rf",
+				"./build"
+			],
+			"group": "build",
+			"problemMatcher": [],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		},
+		{
+			"type": "process",
+			"label": "create",
+			"command": "mkdir",
+			"args": [
+				"build"
+			],
+			"group": "build",
+			"problemMatcher": [],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"dependsOn":["clear"]
+		},
+		{
+			"type": "process",
+			"label": "cmake",
+			"command": "cmake",
+			"args": [
+				".."
+			],
+			"group": "build",
+			"problemMatcher": [],
+			"options": {
+				"cwd": "${workspaceFolder}/build"
+			},
+			"dependsOn":["create"]
+		},
+		{
+			"type": "process",
+			"label": "make",
+			"command": "make",
+			"args": [
+			],
+			"group": "build",
+			"problemMatcher": [],
+			"options": {
+				"cwd": "${workspaceFolder}/build"
+			},
+			"dependsOn":["cmake"],
+			"detail": "rebuild main process"
+		},
+	]
+}
